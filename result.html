@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تهنئة العيد</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        #greeting-text {
+            position: absolute;
+            width: 100%;
+            top: 77%; /* تعديل هذه النسبة حسب مكان النص في الصورة */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        img {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>🎉 تهنئتك جاهزة! 🎉</h2>
+    
+    <div id="greeting-container" class="container">
+        <img id="greeting-image" src="Eid-Greeting.jpg" alt="تهنئة العيد">
+        <div id="greeting-text"></div>
+    </div>
+
+    <button onclick="downloadGreeting()">📥 تحميل التهنئة</button>
+    <button onclick="goBack()">🔙 الرجوع</button>
+
+    <script>
+        function getQueryParam(param) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        let name = getQueryParam("name") || "ضيفنا العزيز";
+        document.getElementById("greeting-text").innerText = name;
+
+        function downloadGreeting() {
+            let container = document.getElementById("greeting-container");
+
+            html2canvas(container).then(canvas => {
+                let link = document.createElement("a");
+                link.download = "Eid_Greeting.jpg";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

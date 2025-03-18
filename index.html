@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تهنئة العيد</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>🎉 أدخل اسمك للحصول على تهنئة العيد 🎉</h2>
+    <input type="text" id="name-input" placeholder="اكتب اسمك هنا">
+    <button onclick="redirectToResult()">عرض التهنئة</button>
+
+    <script>
+        function redirectToResult() {
+            let name = document.getElementById("name-input").value;
+            if (name.trim() !== "") {
+                window.location.href = "result.html?name=" + encodeURIComponent(name);
+            }
+        }
+    </script>
+</body>
+</html>
